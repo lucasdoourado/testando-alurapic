@@ -4,19 +4,20 @@
   "description": "Automatizando cenários de teste no site Alurapic",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress open"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lucasdoourado/testando-alurapic.git"
   },
-  "author": "",
+  "author": "Lucas Dourado",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lucasdoourado/testando-alurapic/issues"
   },
   "homepage": "https://github.com/lucasdoourado/testando-alurapic#readme",
   "devDependencies": {
-    "cypress": "^12.5.0"
+    "cypress": "^12.5.0",
+    "mochawesome": "^7.1.3"
   }
 }
