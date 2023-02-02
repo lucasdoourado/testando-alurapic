@@ -20,16 +20,31 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("button", "Register").click();
     cy.get('input[formcontrolname="email"]').type("lucas");
     cy.contains("ap-vmessage", "Invalid e-mail").should("be.visible");
+    cy.get('input[formcontrolname="email"]').type("lucas email");
+    cy.contains("ap-vmessage", "Invalid e-mail").should("be.visible");
   });
 
   it("verifica mensagem de senha invalida", () => {
     cy.contains("a", "Register now").click();
     cy.contains("button", "Register").click();
-    cy.get('input[formcontrolname="password"]').type("123");
+    cy.get('input[formcontrolname="password"]').type("1234567");
     cy.contains("button", "Register").click();
     cy.contains("ap-vmessage", "Mininum length is 8").should("be.visible");
     cy.get('input[formcontrolname="password"]').type("01234567890123456789");
     cy.contains("button", "Register").click();
     cy.contains("ap-vmessage", "Maximun length is 18").should("be.visible");
+  });
+
+  it("verifica mensagem de nome completo invalida", () => {
+    cy.contains("a", "Register now").click();
+    cy.contains("button", "Register").click();
+    cy.get('input[formcontrolname="fullName"]').type("a");
+    cy.contains("button", "Register").click();
+    cy.contains("ap-vmessage", "Mininum length is 2").should("be.visible");
+    cy.get('input[formcontrolname="fullName"]').type(
+      "uhdauhdauhdasuhdausdhasuhdasudhausdhuasha"
+    );
+    cy.contains("button", "Register").click();
+    cy.contains("ap-vmessage", "Maximun length is 40").should("be.visible");
   });
 });
