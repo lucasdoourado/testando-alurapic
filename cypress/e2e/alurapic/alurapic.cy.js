@@ -77,11 +77,11 @@ describe("Login e registro de usuarios alura pic", () => {
   });
 
   it("fazer registro de usuario corretamente", () => {
-    cy.registra("skruug@outlook.com", "Lucas Dourado", "skruug1", "12345678");
+    cy.registra("skruug@outlook.com", "Lucas Dourado", "skruug100", "12345678");
     cy.contains("button", "login").should("be.visible");
   });
 
-  it.only("fazer registro de usuario que ja existe", () => {
+  it("fazer registro de usuario que ja existe", () => {
     cy.registra("skruug@outlook.com", "Lucas Dourado", "skruug", "12345678");
     cy.contains("ap-vmessage", "Username already taken").should("be.visible");
   });
