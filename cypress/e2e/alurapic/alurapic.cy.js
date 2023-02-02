@@ -64,15 +64,20 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("ap-vmessage", "Must be lower case").should("be.visible");
   });
 
-  it.only("fazer login com usuario valido", () => {
+  it("fazer login com usuario valido", () => {
     cy.login("flavio", "123");
     cy.contains("a", "(Logout)").should("be.visible");
   });
 
-  it.only("fazer login com usuario invalido", () => {
+  it("fazer login com usuario invalido", () => {
     cy.login("lucas", "12345");
     cy.on("window:alert", (str) => {
       expect(str).to.equal("Invalid user name or password");
     });
+  });
+
+  it.only("fazer registro de usuario corretamente", () => {
+    cy.registra("skruug@outlook.com", "Lucas Dourado", "skruug1", "12345678");
+    cy.contains("button", "login").should("be.visible");
   });
 });
