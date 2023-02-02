@@ -76,9 +76,17 @@ describe("Login e registro de usuarios alura pic", () => {
     });
   });
 
-  it("fazer registro de usuario corretamente", () => {
-    cy.registra("skruug@outlook.com", "Lucas Dourado", "skruug100", "12345678");
-    cy.contains("button", "login").should("be.visible");
+  const usuarios = require("../../fixtures/usuarios.json");
+  usuarios.forEach((usuario) => {
+    it.only(`fazer registro de usuario ${usuario.userName}`, () => {
+      cy.registra(
+        usuario.email,
+        usuario.fullName,
+        usuario.userName,
+        usuario.password
+      );
+      cy.contains("button", "login").should("be.visible");
+    });
   });
 
   it("fazer registro de usuario que ja existe", () => {
