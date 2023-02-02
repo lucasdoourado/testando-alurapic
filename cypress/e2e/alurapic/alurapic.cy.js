@@ -59,5 +59,8 @@ describe("Login e registro de usuarios alura pic", () => {
     );
     cy.contains("button", "Register").click();
     cy.contains("ap-vmessage", "Maximun length is 30").should("be.visible");
+    cy.get('input[formcontrolname="userName"]').clear().type("USUARIO");
+    cy.contains("button", "Register").click();
+    cy.contains("ap-vmessage", "Must be lower case").should("be.visible");
   });
 });
