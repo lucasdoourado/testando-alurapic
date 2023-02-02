@@ -47,4 +47,17 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("button", "Register").click();
     cy.contains("ap-vmessage", "Maximun length is 40").should("be.visible");
   });
+
+  it("verifica mensagem de nome de usuario invalida", () => {
+    cy.contains("a", "Register now").click();
+    cy.contains("button", "Register").click();
+    cy.get('input[formcontrolname="userName"]').type("a");
+    cy.contains("button", "Register").click();
+    cy.contains("ap-vmessage", "Mininum length is 2").should("be.visible");
+    cy.get('input[formcontrolname="userName"]').type(
+      "asdysgdasygdyasgdasygdasygdygyg"
+    );
+    cy.contains("button", "Register").click();
+    cy.contains("ap-vmessage", "Maximun length is 30").should("be.visible");
+  });
 });
