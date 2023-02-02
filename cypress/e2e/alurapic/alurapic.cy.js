@@ -63,4 +63,16 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("button", "Register").click();
     cy.contains("ap-vmessage", "Must be lower case").should("be.visible");
   });
+
+  it.only("fazer login com usuario valido", () => {
+    cy.login("flavio", "123");
+    cy.contains("a", "(Logout)").should("be.visible");
+  });
+
+  it.only("fazer login com usuario invalido", () => {
+    cy.login("lucas", "12345");
+    cy.on("window:alert", (str) => {
+      expect(str).to.equal("Invalid user name or password");
+    });
+  });
 });
