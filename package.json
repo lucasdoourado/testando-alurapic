@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lucasdoourado/testando-alurapic/issues"
   },
-  "homepage": "https://github.com/lucasdoourado/testando-alurapic#readme"
+  "homepage": "https://github.com/lucasdoourado/testando-alurapic#readme",
+  "devDependencies": {
+    "cypress": "^12.5.0"
+  }
 }
