@@ -1,11 +1,11 @@
 /// <reference types="Cypress" />
 
-describe("Login e registro de usuarios alura pic", () => {
+describe("cadastro de usuarios", () => {
   beforeEach(() => {
-    cy.visit("http://alura-fotos.herokuapp.com/");
+    cy.visit("/");
   });
 
-  it("verifica mensagens de validacao no registro", () => {
+  it("verifica mensagens de validacao no cadastro", () => {
     cy.contains("a", "Register now").click();
     cy.contains("button", "Register").click();
     cy.contains("ap-vmessage", "Email is required!").should("be.visible");
@@ -24,7 +24,7 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("ap-vmessage", "Invalid e-mail").should("be.visible");
   });
 
-  it("verifica mensagem de senha invalida", () => {
+  it("verifica mensagem de senha invalida no cadastro", () => {
     cy.contains("a", "Register now").click();
     cy.contains("button", "Register").click();
     cy.get('input[formcontrolname="password"]').type("1234567");
@@ -35,7 +35,7 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("ap-vmessage", "Maximun length is 18").should("be.visible");
   });
 
-  it("verifica mensagem de nome completo invalida", () => {
+  it("verifica mensagem de nome completo invalido no cadastro", () => {
     cy.contains("a", "Register now").click();
     cy.contains("button", "Register").click();
     cy.get('input[formcontrolname="fullName"]').type("a");
@@ -48,7 +48,7 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("ap-vmessage", "Maximun length is 40").should("be.visible");
   });
 
-  it("verifica mensagem de nome de usuario invalida", () => {
+  it("verifica mensagem de nome de usuario invalido no cadastro", () => {
     cy.contains("a", "Register now").click();
     cy.contains("button", "Register").click();
     cy.get('input[formcontrolname="userName"]').type("a");
@@ -64,21 +64,14 @@ describe("Login e registro de usuarios alura pic", () => {
     cy.contains("ap-vmessage", "Must be lower case").should("be.visible");
   });
 
-  it("fazer login com usuario valido", () => {
-    cy.login("flavio", "123");
-    cy.contains("a", "(Logout)").should("be.visible");
-  });
-
-  it("fazer login com usuario invalido", () => {
-    cy.login("lucas", "12345");
-    cy.on("window:alert", (str) => {
-      expect(str).to.equal("Invalid user name or password");
-    });
+  it("fazer cadastro de usuario ja existente", () => {
+    cy.registra("skruug@outlook.com", "Lucas Dourado", "skruug", "12345678");
+    cy.contains("ap-vmessage", "Username already taken").should("be.visible");
   });
 
   const usuarios = require("../../fixtures/usuarios.json");
   usuarios.forEach((usuario) => {
-    it.only(`fazer registro de usuario ${usuario.userName}`, () => {
+    it(`fazer cadastro de usuario ${usuario.userName}`, () => {
       cy.registra(
         usuario.email,
         usuario.fullName,
@@ -87,10 +80,5 @@ describe("Login e registro de usuarios alura pic", () => {
       );
       cy.contains("button", "login").should("be.visible");
     });
-  });
-
-  it("fazer registro de usuario que ja existe", () => {
-    cy.registra("skruug@outlook.com", "Lucas Dourado", "skruug", "12345678");
-    cy.contains("ap-vmessage", "Username already taken").should("be.visible");
   });
 });
