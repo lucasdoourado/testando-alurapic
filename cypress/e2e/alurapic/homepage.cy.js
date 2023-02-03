@@ -2,7 +2,7 @@
 
 describe("usabilidade tela inicial", () => {
   beforeEach(() => {
-    cy.visit("http://alura-fotos.herokuapp.com/");
+    cy.visit("/");
   });
 
   it("verifica mensagem de tela inicial", () => {

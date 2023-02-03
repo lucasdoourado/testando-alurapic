@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
-Cypress.Commands.add("login", (nome, senha) => {
-  cy.get('input[formcontrolname="userName"]').type(nome);
-  cy.get('input[formcontrolname="password"]').type(senha, { log: false });
+Cypress.Commands.add("login", (userName, password) => {
+  cy.get('input[formcontrolname="userName"]').type(userName);
+  cy.get('input[formcontrolname="password"]').type(password, { log: false });
   cy.get('button[type="submit"]').click();
 });
 

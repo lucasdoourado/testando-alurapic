@@ -2,11 +2,11 @@
 
 describe("login de usuarios", () => {
   beforeEach(() => {
-    cy.visit("http://alura-fotos.herokuapp.com/");
+    cy.visit("/");
   });
 
   it("fazer login com usuario valido", () => {
-    cy.login(Cypress.env(userName), Cypress.env(password));
+    cy.login("flavio", "123");
     cy.contains("a", "(Logout)").should("be.visible");
   });
 
